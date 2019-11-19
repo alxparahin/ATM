@@ -7,18 +7,18 @@ import ru.sbrf.lesson.processing.Host;
 public class ATM {
 
     private Host host;
-    private Response response;
+//    private Response response;
 
     public ATM(Host host){
         this.host = host;
     }
 
-    public boolean isError(int clientID, int accountId, int PIN){
-        response = host.getBalance(new Request(clientID, accountId, PIN));
-        return response.isError();
-    }
+//    public boolean isError(int clientID, int accountId, int PIN){
+//        response = host.getBalance(new Request(clientID, accountId, PIN));
+//        return response.getBalance();
+//    }
 
-    public int getBalance(){
-        return response.getBalance();
+    public int getBalance(int clientID, int accountId, int PIN){
+        return host.getBalance(new Request(clientID, accountId, PIN)).getBalance();
     }
 }

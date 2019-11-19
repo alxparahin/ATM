@@ -2,18 +2,23 @@ package ru.sbrf.lesson;
 
 import ru.sbrf.lesson.devices.ATM;
 import ru.sbrf.lesson.processing.Host;
+import ru.sbrf.lesson.processing.exceptions.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Host host = new Host();
-        //Host host = new Host(21,2,123);
-        ATM atm = new ATM(host);
-        if(atm.isError(1,2,123)){
-            System.out.println("Ошибка при запросе баланса");
-        }else {
-            System.out.println("Результат запроса баланса " + atm.getBalance());
+        try {
+            System.out.println("Результат запроса баланса " + new ATM(new Host()).getBalance(11,2,123));
+        } catch (BusinessException e) {
+//            AccountNotFoundException | ClientNotFoundException | IncorrectPINException
+            System.out.println("Ошибка при запросе баланса: " + e.getMessage());
+            System.out.println(e.getClass());
+            System.out.println(ClientNotFoundException.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(-1);
         }
+
     }
 }
