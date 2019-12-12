@@ -8,12 +8,15 @@ import ru.sbrf.lesson.processing.exceptions.IncorrectPINException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Host {
     //private Client client;
     private HashMap client = new HashMap(1);
+    private Set<Integer> requestIDs = new HashSet<>();
     //private Account account;
-    private ArrayList accounts = new ArrayList(1);
+    private ArrayList<Account> accounts = new ArrayList<>();
 
     public Host(){
         this(1,0,123,100);
@@ -21,8 +24,9 @@ public class Host {
 
     public Host(int clientId, int accountId, int PIN, int balance){
         client.put(clientId, new Client(clientId,PIN,new Account(accountId,clientId,balance)));
+        Account account = new Account(accountId,clientId,balance);
         ///this.account = new Account(accountId,clientId,balance);
-        accounts.add(((Client) client.get(clientId)).getAccount());
+//        accounts.add((Account) ((Client) client.get(clientId)).getAccount());
         //accounts.add(((Client) client.get(clientId)).getAccount());
     }
 

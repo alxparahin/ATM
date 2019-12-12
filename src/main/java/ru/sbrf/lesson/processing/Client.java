@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Client {
     private int clientId;
     private int PIN;
-    private ArrayList account = new ArrayList();
+    private ArrayList<Account> account = new ArrayList<>();
 
     public Client(int clientId, int PIN, Account account) {
         this.clientId = clientId;
